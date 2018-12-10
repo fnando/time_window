@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    time_window (0.0.0)
+    time_window (0.1.0)
 
 GEM
   remote: https://rubygems.org/
