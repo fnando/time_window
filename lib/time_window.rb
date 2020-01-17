@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TimeWindow
   require "time_window/version"
 
@@ -33,7 +35,10 @@ module TimeWindow
     _, window, unit = *window.match(/\A(\d+)(.)\z/)
 
     window = Integer(window)
-    unit = ALIASES.fetch(unit) { raise InvalidUnit, "#{unit.inspect} is not a valid unit" }
+
+    unit = ALIASES.fetch(unit) do
+      raise InvalidUnit, "#{unit.inspect} is not a valid unit"
+    end
 
     hour, minute, second = public_send("process_#{unit}_window", time, window)
 
@@ -41,7 +46,9 @@ module TimeWindow
   end
 
   def self.process_second_window(time, window)
-    raise InvalidWindow, "#{window.inspect} must be covered by 1..59" unless (1..59).cover?(window)
+    unless (1..59).cover?(window)
+      raise InvalidWindow, "#{window.inspect} must be covered by 1..59"
+    end
 
     second = time.sec - (time.sec % window)
 
@@ -49,7 +56,9 @@ module TimeWindow
   end
 
   def self.process_minute_window(time, window)
-    raise InvalidWindow, "#{window.inspect} must be covered by 1..59" unless (1..59).cover?(window)
+    unless (1..59).cover?(window)
+      raise InvalidWindow, "#{window.inspect} must be covered by 1..59"
+    end
 
     minute = time.min - (time.min % window)
 
@@ -57,7 +66,9 @@ module TimeWindow
   end
 
   def self.process_hour_window(time, window)
-    raise InvalidWindow, "#{window.inspect} must be covered by 1..23" unless (1..23).cover?(window)
+    unless (1..23).cover?(window)
+      raise InvalidWindow, "#{window.inspect} must be covered by 1..23"
+    end
 
     hour = time.hour - (time.hour % window)
 

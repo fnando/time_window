@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class TimeWindowTest < Minitest::Test
@@ -26,6 +28,10 @@ class TimeWindowTest < Minitest::Test
   end
 
   test "raises with invalid window" do
+    assert_raises(TimeWindow::InvalidWindow) do
+      TimeWindow.call("0s")
+    end
+
     assert_raises(TimeWindow::InvalidWindow) do
       TimeWindow.call("0h")
     end
