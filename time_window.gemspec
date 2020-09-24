@@ -7,12 +7,12 @@ Gem::Specification.new do |spec|
   spec.version       = TimeWindow::VERSION
   spec.authors       = ["Nando Vieira"]
   spec.email         = ["me@fnando.com"]
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
-  spec.summary       = %w[
-    Retrieve time objects by time windows (e.g.
-    TimeWindow.call("5m") will round minutes to multiples of
-    5).
-  ].join(" ")
+  spec.summary = "Retrieve time objects by time windows " \
+                 "(e.g. TimeWindow.call('5m') will round minutes to " \
+                 "multiples of 5)."
+
   spec.description   = spec.summary
   spec.homepage      = "https://github.com/fnando/time_window"
   spec.license       = "MIT"
